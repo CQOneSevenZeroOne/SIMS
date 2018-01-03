@@ -17,11 +17,7 @@ h3{
 	font-size: 18px;
 	font-weight: 500;
 	margin-left:90px;
-    line-height: 30px
-
-}
-.form{
-	
+    line-height: 30px;
 }
 .form p{
 	width:80%;
@@ -33,15 +29,18 @@ h3{
 .form p input{
 	border:0;
 	float:right;
-	width: 130px;
+	width: 160px;
 	height: 30px;
 
 }
 .form p i{
-	float:left;
-	width: 30px;
-	height:30px;
-	display: inline-block;
+    float: left;
+    width: 30px;
+    height: 30px;
+    line-height: 30px;
+    text-align: center;
+    font-size: 18px;
+    display: inline-block;
 }
 .form #sub{
 	width: 100%;
