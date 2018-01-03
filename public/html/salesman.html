@@ -7,6 +7,7 @@
   <title>主页</title>
   <!-- <link rel="stylesheet" href="css/layui.css " media="all"> -->
   <link rel="stylesheet" href="../lib/layui/css/layui.css" media="all">
+
   <style>
     .demo-carousel {
       height: 200px;
@@ -65,7 +66,6 @@
         </li>
       </ul>
     </div>
-
     <div class="layui-side layui-bg-black">
       <div class="layui-side-scroll">
         <!-- 左侧导航区域（可配合layui已有的垂直导航） -->
@@ -122,8 +122,8 @@
         </ul>
       </div>
     </div>
-    <div class="layui-body">
-      <table lay-filter="demo">
+    <div class="layui-body" id="layerbody">
+      <table lay-filter="demo" id="test">
         <thead>
           <tr>
             <th lay-data="{field:'username', width:100}">昵称</th>
@@ -161,14 +161,14 @@
 </body>
 
 </html>
+<script src="../lib/jquery.js"></script>
 <script src="../lib/layui/layui.all.js"></script>
+<script src="../js/conmmon.js"></script>
 <script>
   var table = layui.table;
  
  //转换静态表格
- table.init('demo', {
-   height: 315 //设置高度
-   ,limit: 10 //注意：请务必确保 limit 参数（默认：10）是与你服务端限定的数据条数一致
-   //支持所有基础参数
- }); 
+table.render({
+  height: 300
+});
 </script>
