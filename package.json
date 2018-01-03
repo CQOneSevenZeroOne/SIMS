@@ -1,0 +1,19 @@
+{
+  "name": "sims",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/CQOneSevenZeroOne/SIMS.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/CQOneSevenZeroOne/SIMS/issues"
+  },
+  "homepage": "https://github.com/CQOneSevenZeroOne/SIMS#readme"
+}
