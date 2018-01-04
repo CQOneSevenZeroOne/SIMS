@@ -73,19 +73,6 @@ app.post('/user/updateInfo', function (req, res) {
     });
 })
 
-//admin && salesman  update infomation
-app.post('/customer/updateCustomer', function (req, res) {
-    res.append("Access-Control-Allow-Origin", "*");
-    connection.query(`update customer set profile = ${req.body.profile} , tel = ${req.body.tel} , email = ${req.body.email} , state = ${req.body.state} , cause = ${req.body.cause} , userId = ${req.body.userid}  where customerId = ${req.body.customerid}`, function (error, results, fields) {
-        if (error) {
-            res.send('fail');
-            return;
-        } else {
-            res.send('success')
-        }
-    });
-})
-
 //add userinfo
 app.post('/user/addInfo', function (req, res) {
     res.append("Access-Control-Allow-Origin", "*");
@@ -99,8 +86,22 @@ app.post('/user/addInfo', function (req, res) {
     });
 })
 
-//add customer
+//customer update infomation
 app.post('/customer/updateCustomer', function (req, res) {
+    res.append("Access-Control-Allow-Origin", "*");
+    connection.query(`update customer set profile = ${req.body.profile} , tel = ${req.body.tel} , email = ${req.body.email} , state = ${req.body.state} , cause = ${req.body.cause} , userId = ${req.body.userid}  where customerId = ${req.body.customerid}`, function (error, results, fields) {
+        if (error) {
+            res.send('fail');
+            return;
+        } else {
+            res.send('success')
+        }
+    });
+})
+
+
+//add customer
+app.post('/customer/addCustomer', function (req, res) {
     res.append("Access-Control-Allow-Origin", "*");
     connection.query(`insert into customer values (${req.body.tel},${req.body.email},${req.body.profile},${req.body.userid},${req.body.state},${req.body.cause})`, function (error, results, fields) {
         if(error){
@@ -111,8 +112,31 @@ app.post('/customer/updateCustomer', function (req, res) {
     });
 })
 
+//get all customer
+app.post('/customer/findAllCustomer', function (req, res) {
+    res.append("Access-Control-Allow-Origin", "*");
+    connection.query(`select * from customer`, function (error, results, fields) {
+        if(error){
+            res.send('fail');
+        }else{
+            res.send(results);
+        }
+    });
+})
+
+//get a customer by id
+app.post('/customer/findCustomerById', function (req, res) {
+    res.append("Access-Control-Allow-Origin", "*");
+    connection.query(`select * from customer where customerId = ${req.body.customerid}`, function (error, results, fields) {
+        if(error){
+            res.send('fail');
+        }else{
+            res.send(results[0]);
+        }
+    });
+})
 //update product
-app.post('/product/addProduct', function (req, res) {
+app.post('/product/updateProduct', function (req, res) {
     res.append("Access-Control-Allow-Origin", "*");
     connection.query(`update product set name=${req.body.name} , price = ${req.body.price},img = =${req.body.img}, notic = ${req.body.notic} where productId = ${req.body.productid}`, function (error, results, fields) {
         if(error){
@@ -124,7 +148,7 @@ app.post('/product/addProduct', function (req, res) {
 })
 
 //get all product
-app.post('/product', function (req, res) {
+app.post('/product/getAllProduct', function (req, res) {
     res.append("Access-Control-Allow-Origin", "*");
     connection.query(`select * from product`, function (error, results, fields) {
         if(error){
@@ -137,7 +161,7 @@ app.post('/product', function (req, res) {
 })
 
 //get product by id
-app.post('/product', function (req, res) {
+app.post('/product/getProductById', function (req, res) {
     res.append("Access-Control-Allow-Origin", "*");
     connection.query(`select * from product where productId = ${req.body.productid}`, function (error, results, fields) {
         if(error){
@@ -148,6 +172,17 @@ app.post('/product', function (req, res) {
     });
 })
 
+//add product
+app.post('/product/addProduct', function (req, res) {
+    res.append("Access-Control-Allow-Origin", "*");
+    connection.query(`insert into product values (${req.body.name},${req.body.price},${req.body.img},${req.body.notic})`, function (error, results, fields) {
+        if(error){
+            res.send('fail');
+        }else{
+            res.send('success');
+        }
+    });
+})
 //add oder
 // app.post('/oder/addorder', function (req, res) {
 //     res.append("Access-Control-Allow-Origin", "*");
