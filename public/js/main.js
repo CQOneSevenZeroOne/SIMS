@@ -2,11 +2,11 @@ var express = require('express');
 var app = express();
 var mysql = require('mysql');
 var bodyParser = require('body-parser');
-var multer = require('multer'); 
+var multer = require('multer');
 
 // for parsing application/json
-app.use(bodyParser.json()); 
- // for parsing application/x-www-form-urlencoded
+app.use(bodyParser.json());
+// for parsing application/x-www-form-urlencoded
 app.use(bodyParser.urlencoded({ extended: true }));
 
 // 创建连接
@@ -22,17 +22,42 @@ connection.connect();
 
 //接收登录请求
 app.post('/login', function (req, res) {
-res.append("Access-Control-Allow-Origin","*");
+    res.append("Access-Control-Allow-Origin", "*");
     connection.query('SELECT * FROM userinfo', function (error, results, fields) {
-        if(req.body.name==results[0].account && req.body.password==results[0].pwd){
-            if(results[0].identify=='业务员'){
+        if (req.body.name == results[0].account && req.body.password == results[0].pwd) {
+            if (results[0].identify == '业务员') {
                 res.send('业务员');
             }
-        }else{
+        } else {
             res.send('fail');
         }
     });
 })
 
+//admin && salesman  update infomation
+app.post('/updateInfo', function (req, res) {
+    res.append("Access-Control-Allow-Origin", "*");
+    connection.query(`update userinfo set pwd = ${req.body.password} , tel = ${req.body.tel} , email = ${req.body.email} where userId = ${req.body.userid}`, function (error, results, fields) {
+        if (err) {
+            res.send('fail');
+            return;
+        } else {
+            res.send('success')
+        }
+    });
+})
+
+//admin && salesman  update infomation
+app.post('/updateCustomer', function (req, res) {
+    res.append("Access-Control-Allow-Origin", "*");
+    connection.query(`update customer set profile = ${req.body.profile} , tel = ${req.body.tel} , email = ${req.body.email} , state = ${req.body.state} , cause = ${req.body.cause} , userId = ${req.body.userid}  where costomerId = ${req.body.costomerid}`, function (error, results, fields) {
+        if (err) {
+            res.send('fail');
+            return;
+        } else {
+            res.send('success')
+        }
+    });
+})
 app.listen(8888);
 console.log('start server')
