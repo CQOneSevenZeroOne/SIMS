@@ -1,0 +1,78 @@
+<style>
+    form {
+        width: 500px;
+        position: absolute;
+        left: 50%;
+        top: 100px;
+        margin-left: -250px;
+    }
+</style>
+<form class="layui-form">
+    <div class="layui-form-item">
+        <label class="layui-form-label">姓名</label>
+        <div class="layui-input-block">
+            <input type="text" name="names" placeholder="请输入" autocomplete="off" class="layui-input">
+        </div>
+    </div>
+    <div class="layui-form-item">
+        <label class="layui-form-label">电话</label>
+        <div class="layui-input-block">
+            <input type="text" name="tel" placeholder="请输入" autocomplete="off" class="layui-input" lay-verify="phone">
+        </div>
+    </div>
+    <div class="layui-form-item">
+        <label class="layui-form-label">邮箱</label>
+        <div class="layui-input-block">
+            <input type="text" name="email" placeholder="请输入" autocomplete="off" class="layui-input" lay-verify="email">
+        </div>
+    </div>
+    <div class="layui-form-item">
+        <label class="layui-form-label">身份</label>
+        <div class="layui-input-block">
+            <input type="radio" name="identify" value="sm" title="销售" lay-filter="*">
+            <input type="radio" name="identify" value="mg" title="经理" lay-filter="*">
+            <input type="radio" name="identify" value="ep" title="总监" lay-filter="*">
+        </div>
+    </div>
+    <div class="layui-form-item">
+        <label class="layui-form-label">初始密码</label>
+        <div class="layui-input-block">
+            <input type="text" name="pass" placeholder="请输入" autocomplete="off" class="layui-input">
+        </div>
+    </div>
+    <div class="layui-form-item">
+        <div class="layui-input-block">
+            <button class="layui-btn" lay-submit lay-filter="*">立即提交</button>
+            <button type="reset" class="layui-btn layui-btn-primary">重置</button>
+        </div>
+    </div>
+</form>
+<script src="../lib/layui/layui.all.js"></script>
+<script src="../lib/jquery.js"></script>
+<script>
+    //Demo
+    layui.use('form', function() {
+        var form = layui.form;
+        //监听提交
+        form.on('submit(*)', function(data) {
+            var a = data.field;
+            var accound = a.identify + a.tel;
+            $.ajax({
+                url: "http://10.40.153.145:8888/user/updateInfo",
+                type: "POST",
+                data: {
+                    userid: 1,
+                    accound: accound,
+                    password: a.pass,
+                    tel: a.tel,
+                    email: a.email,
+                    identify: a.identify
+                },
+                success: function(data) {
+                    console.log(data)
+                }
+            })
+            return false;
+        });
+    });
+</script>
