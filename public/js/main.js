@@ -35,10 +35,10 @@ app.post('/login', function (req, res) {
 })
 
 //admin && salesman  update infomation
-app.post('/updateInfo', function (req, res) {
+app.post('/user/updateInfo', function (req, res) {
     res.append("Access-Control-Allow-Origin", "*");
     connection.query(`update userinfo set pwd = ${req.body.password} , tel = ${req.body.tel} , email = ${req.body.email} where userId = ${req.body.userid}`, function (error, results, fields) {
-        if (err) {
+        if (error) {
             res.send('fail');
             return;
         } else {
@@ -51,7 +51,7 @@ app.post('/updateInfo', function (req, res) {
 app.post('/updateCustomer', function (req, res) {
     res.append("Access-Control-Allow-Origin", "*");
     connection.query(`update customer set profile = ${req.body.profile} , tel = ${req.body.tel} , email = ${req.body.email} , state = ${req.body.state} , cause = ${req.body.cause} , userId = ${req.body.userid}  where customerId = ${req.body.customerid}`, function (error, results, fields) {
-        if (err) {
+        if (error) {
             res.send('fail');
             return;
         } else {
@@ -59,5 +59,19 @@ app.post('/updateCustomer', function (req, res) {
         }
     });
 })
+
+//add userinfo
+app.post('/user/addInfo', function (req, res) {
+    res.append("Access-Control-Allow-Origin", "*");
+    var data = new Date();
+    connection.query(`insert into userinfo values (${req.body.accound},${req.body.password},${req.body.identify},${req.body.tel},${req.body.email},${data})`, function (error, results, fields) {
+        if(error){
+            res.send('fail');
+        }else{
+            res.send('success');
+        }
+    });
+})
+
 app.listen(8888);
 console.log('start server')
