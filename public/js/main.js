@@ -77,7 +77,10 @@ app.post('/user/updateInfo', function (req, res) {
 app.post('/user/addInfo', function (req, res) {
     res.append("Access-Control-Allow-Origin", "*");
     var data = new Date();
-    connection.query(`insert into userinfo values (${req.body.accound},${req.body.password},${req.body.identify},${req.body.tel},${req.body.email},${data})`, function (error, results, fields) {
+    console.log(req.body)
+    var str = `insert into userinfo(accound,pwd,identify,tel,email,registerTime) values (${req.body.accound},${req.body.password},${req.body.identify},${req.body.tel},${req.body.email},${data})`;
+    console.log(str)
+    connection.query(str, function (error, results, fields) {
         if(error){
             res.send('fail');
         }else{
@@ -103,7 +106,7 @@ app.post('/customer/updateCustomer', function (req, res) {
 //add customer
 app.post('/customer/addCustomer', function (req, res) {
     res.append("Access-Control-Allow-Origin", "*");
-    connection.query(`insert into customer values (${req.body.tel},${req.body.email},${req.body.profile},${req.body.userid},${req.body.state},${req.body.cause})`, function (error, results, fields) {
+    connection.query(`insert into customer(tel,email,profile,userId,state,cause) values (${req.body.tel},${req.body.email},${req.body.profile},${req.body.userid},${req.body.state},${req.body.cause})`, function (error, results, fields) {
         if(error){
             res.send('fail');
         }else{
@@ -175,7 +178,7 @@ app.post('/product/getProductById', function (req, res) {
 //add product
 app.post('/product/addProduct', function (req, res) {
     res.append("Access-Control-Allow-Origin", "*");
-    connection.query(`insert into product values (${req.body.name},${req.body.price},${req.body.img},${req.body.notic})`, function (error, results, fields) {
+    connection.query(`insert into product(name,price,img,notic) values (${req.body.name},${req.body.price},${req.body.img},${req.body.notic})`, function (error, results, fields) {
         if(error){
             res.send('fail');
         }else{
