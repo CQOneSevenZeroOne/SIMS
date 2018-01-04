@@ -27,9 +27,35 @@ app.post('/login', function (req, res) {
         if (req.body.name == results[0].account && req.body.password == results[0].pwd) {
             if (results[0].identify == '业务员') {
                 res.send('salesman');
+            }else if(results[0].identify == 'admin'){
+                res.send('admin');
             }
         } else {
             res.send('fail');
+        }
+    });
+})
+
+//get all salesman
+app.post('/user/findSalesman', function (req, res) {
+    res.append("Access-Control-Allow-Origin", "*");
+    connection.query(`select * from userinfo where identify = '业务员'`, function (error, results, fields) {
+        if(error){
+            res.send('fail');
+        }else{
+            res.send(results);
+        }
+    });
+})
+
+//get a salesman by id
+app.post('/user/findSalesmanById', function (req, res) {
+    res.append("Access-Control-Allow-Origin", "*");
+    connection.query(`select * from userinfo where userId = ${req.body.userid}`, function (error, results, fields) {
+        if(error){
+            res.send('fail');
+        }else{
+            res.send(results[0]);
         }
     });
 })
@@ -113,7 +139,7 @@ app.post('/product', function (req, res) {
 //get product by id
 app.post('/product', function (req, res) {
     res.append("Access-Control-Allow-Origin", "*");
-    connection.query(`select * from product where productId = ${req.body.producrid}`, function (error, results, fields) {
+    connection.query(`select * from product where productId = ${req.body.productid}`, function (error, results, fields) {
         if(error){
             res.send('fail');
         }else{
