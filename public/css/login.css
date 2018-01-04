@@ -31,6 +31,7 @@ h3{
 	float:right;
 	width: 160px;
 	height: 30px;
+	outline: none;
 
 }
 .form p i{
@@ -48,4 +49,11 @@ h3{
 	background:#1e8fff;
 	color: white;
     font-weight: 600;
+}
+#err {
+	font-size: 12px;
+	background:none;
+	color: red;
+	text-align: center;
+	display: none;
 }
