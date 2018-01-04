@@ -50,7 +50,7 @@ app.post('/updateInfo', function (req, res) {
 //admin && salesman  update infomation
 app.post('/updateCustomer', function (req, res) {
     res.append("Access-Control-Allow-Origin", "*");
-    connection.query(`update customer set profile = ${req.body.profile} , tel = ${req.body.tel} , email = ${req.body.email} , state = ${req.body.state} , cause = ${req.body.cause} , userId = ${req.body.userid}  where costomerId = ${req.body.costomerid}`, function (error, results, fields) {
+    connection.query(`update customer set profile = ${req.body.profile} , tel = ${req.body.tel} , email = ${req.body.email} , state = ${req.body.state} , cause = ${req.body.cause} , userId = ${req.body.userid}  where customerId = ${req.body.customerid}`, function (error, results, fields) {
         if (err) {
             res.send('fail');
             return;

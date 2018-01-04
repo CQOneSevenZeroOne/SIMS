@@ -36,7 +36,7 @@ url:http://10.40.153.145:8888/updateInfo
 
 url:http://10.40.153.145:8888/updateCustomer
 
-传递参数:costomerid,profile,tel,email,state,cause,userid
+传递参数:customerid,profile,tel,email,state,cause,userid
 
 返回类型:string
 
