@@ -26,7 +26,7 @@ app.post('/login', function (req, res) {
     connection.query('SELECT * FROM userinfo', function (error, results, fields) {
         if (req.body.name == results[0].account && req.body.password == results[0].pwd) {
             if (results[0].identify == '业务员') {
-                res.send('业务员');
+                res.send('salesman');
             }
         } else {
             res.send('fail');
