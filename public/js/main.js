@@ -22,9 +22,9 @@ connection.connect();
 
 //接收登录请求
 app.post('/login', function (req, res) {
-    res.append("Access-Control-Allow-Origin","*");
+res.append("Access-Control-Allow-Origin","*");
     connection.query('SELECT * FROM userinfo', function (error, results, fields) {
-       if(req.body.name==results[0].account && req.body.password==results[0].pwd){
+        if(req.body.name==results[0].account && req.body.password==results[0].pwd){
             if(results[0].identify=='业务员'){
                 res.send('业务员');
             }
@@ -32,7 +32,7 @@ app.post('/login', function (req, res) {
             res.send('fail');
         }
     });
-  })
+})
 
 app.listen(8888);
 console.log('start server')

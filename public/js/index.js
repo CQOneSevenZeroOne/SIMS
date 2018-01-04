@@ -1,7 +1,7 @@
 $(function(){
     $("#sub").on('click',function(){
         $.ajax({
-            url:'http://localhost:8888/login',
+            url:'http://10.40.153.145:8888/login',
             type:'post',
             data:{
                 name:$('#accound').val(),
