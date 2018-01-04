@@ -85,5 +85,55 @@ app.post('/customer/updateCustomer', function (req, res) {
     });
 })
 
+//update product
+app.post('/product/addProduct', function (req, res) {
+    res.append("Access-Control-Allow-Origin", "*");
+    connection.query(`update product set name=${req.body.name} , price = ${req.body.price},img = =${req.body.img}, notic = ${req.body.notic} where productId = ${req.body.productid}`, function (error, results, fields) {
+        if(error){
+            res.send('fail');
+        }else{
+            res.send('success');
+        }
+    });
+})
+
+//get all product
+app.post('/product', function (req, res) {
+    res.append("Access-Control-Allow-Origin", "*");
+    connection.query(`select * from product`, function (error, results, fields) {
+        if(error){
+            res.send('fail');
+        }else{
+            //console.log(results)
+            res.send(results);
+        }
+    });
+})
+
+//get product by id
+app.post('/product', function (req, res) {
+    res.append("Access-Control-Allow-Origin", "*");
+    connection.query(`select * from product where productId = ${req.body.producrid}`, function (error, results, fields) {
+        if(error){
+            res.send('fail');
+        }else{
+            res.send(results[0]);
+        }
+    });
+})
+
+//add oder
+// app.post('/oder/addorder', function (req, res) {
+//     res.append("Access-Control-Allow-Origin", "*");
+//     var date = new Date();
+//     connection.query(`insert into oder values (${date},${req.body.customerid},${req.body.userid},${req.body.productid})`, function (error, results, fields) {
+//         if(error){
+//             res.send('fail');
+//         }else{
+//             res.send('success');
+//         }
+//     });
+// })
+
 app.listen(8888);
 console.log('start server')
