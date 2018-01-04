@@ -88,38 +88,38 @@
                         <a href="javascript:;">订单录入</a>
                         <dl class="layui-nav-child">
                             <dd>
-                                <a href="javascript:;" data-html="info.html">订单录入</a>
+                                <a href="javascript:;" data-html="orderinput.html" class="chick">订单录入</a>
                             </dd>
                             <dd>
-                                <a href="javascript:;">订单查询</a>
-                       </dd>
-                   </dl>
-          </li>
-          <li class="layui-nav-item ">
-            <a href="javascript:;">客户信息</a>
-            <dl class="layui-nav-child">
-              <dd>
-                <a href="javascript:;">客户新增</a>
-              </dd>
-              <dd>
-                <a href="javascript:;">客户查找</a>
-              </dd>
-            </dl>
-          </li>
-          <li class="layui-nav-item ">
-            <a href="javascript:;">业务员考勤</a>
-            <dl class="layui-nav-child">
-              <dd>
-                <a href="javascript:;">请假</a>
-              </dd>
-              <dd>
-                <a href="javascript:;">违纪</a>
-              </dd>
-            </dl>
-          </li>
-        </ul>
-      </div>
-    </div>
+                                <a href="javascript:;" class="chick">订单查询</a>
+                            </dd>
+                        </dl>
+                    </li>
+                    <li class="layui-nav-item ">
+                        <a href="javascript:;">客户信息</a>
+                        <dl class="layui-nav-child">
+                            <dd>
+                                <a href="javascript:;" class="chick">客户新增</a>
+                            </dd>
+                            <dd>
+                                <a href="javascript:;">客户查找</a>
+                            </dd>
+                        </dl>
+                    </li>
+                    <li class="layui-nav-item ">
+                        <a href="javascript:;">业务员考勤</a>
+                        <dl class="layui-nav-child">
+                            <dd>
+                                <a href="javascript:;">请假信息</a>
+                            </dd>
+                            <dd>
+                                <a href="javascript:;">违纪信息</a>
+                            </dd>
+                        </dl>
+                    </li>
+                </ul>
+            </div>
+        </div>
         <div class="layui-body">
         </div>
         <div class="layui-footer">
@@ -133,10 +133,9 @@
 <script src="../lib/layui/layui.all.js"></script>
 <script src="../js/salesman.js"></script>
 <script>
-    $("a").each(function(i, e) {
+    $(".chick").each(function(i, e) {
         $(e).click(function() {
             var html = $(e).attr("data-html");
-            console.log(html, $(".layui-body"))
             $(".layui-body").load(html)
        })
     })
