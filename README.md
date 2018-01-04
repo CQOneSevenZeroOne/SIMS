@@ -44,10 +44,22 @@ url:http://10.40.153.145:8888/user/updateInfo
 
 请求方式:post
 
-url:http://10.40.153.145:8888/updateCustomer
+url:http://10.40.153.145:8888/customer/updateCustomer
 
 传递参数:customerid,profile,tel,email,state,cause,userid
 
 返回类型:string
 
 返回值:"fail"（修改错误）  "success"（修改成功）
+
+# 新增客户资料
+
+请求方式:post
+
+url:http://10.40.153.145:8888/customer/updateCustomer
+
+传递参数:profile,tel,email,state,cause,userid
+
+返回类型:string
+
+返回值:"fail"（新增错误）  "success"（新增成功）
