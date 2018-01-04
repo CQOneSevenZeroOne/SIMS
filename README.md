@@ -166,14 +166,135 @@ url:http://10.40.153.145:8888/product/getProductById
 
 返回值:{}('查询成功时')   'fail'('查询失败时')
 
-<!-- # 新增订单
+# 删除用户
+
+请求方式:post
+url:http://10.40.153.145:8888/user/del
+
+传递参数:userid
+
+返回类型 :string
+
+返回值: 'fail'    'success'
+
+# 删除商品
+
+请求方式:post
+url:http://10.40.153.145:8888/product/del
+
+传递参数:productid
+
+返回类型 :string
+
+返回值: 'fail'    'success'
+
+# 删除客户
+
+请求方式:post
+url:http://10.40.153.145:8888/customer/del
+
+传递参数:customerid
+
+返回类型 :string
+
+返回值: 'fail'    'success'
+
+
+# 新增订单
 
 请求方式:post
 
 url:http://10.40.153.145:8888/oder/addorder
 
-传递参数:customerid,userid,productid
+传递参数:
+
+//对象数组，存储商品的id，数量和价格,封装的名字为branch
+
+branch:[{productid,num,price}]
+
+//客户id
+customerid
+
+//销售员id
+userid
 
 返回类型:string
 
-返回值:"fail"（新增失败）  "success"（新增成功） -->
+返回值:"fail"（新增失败）  "success"（新增成功）
+
+# 查询单个订单   （整个订单信息包括分支）
+
+请求方式:post
+url:http://10.40.153.145:8888/oder/findOrderById
+
+传递参数:oderid
+
+返回类型 :obj  || string
+
+返回值: 
+
+'fail'('查询失败')
+
+查询成功时返回object
+
+    {
+        
+        order:{} , //客户customerId  业务员userId
+
+        brach:[{}]    //产品productId，数量num，价格price
+    }
+
+# 查询所有订单    （只返回客户，业务员，订单号，时间，【时间即小分支id，可下一步查询所有小分支】）
+
+请求方式:post
+url:http://10.40.153.145:8888/oder/getAllOrder
+
+传递参数:无
+
+返回类型 :string
+
+返回值: 'fail'    'success'
+
+# 查询一个订单的所有分支
+
+请求方式:post
+url:http://10.40.153.145:8888/oder/getAllBeanch
+
+传递参数:orderid
+
+返回类型 :string
+
+返回值: 'fail'  [{}]branch数组(成功时)
+
+# 查询一个订单的所有分支
+
+请求方式:post
+url:http://10.40.153.145:8888/oder/getAllBranch
+
+传递参数:orderid
+
+返回类型 :string
+
+返回值: 'fail'  [{}]branch数组(成功时)
+
+# 修改订单（即修改订单下面的分支）
+
+请求方式:post
+url:http://10.40.153.145:8888/oder/updateBranch
+
+传递参数:orderid,productid,num
+
+返回类型 :string
+
+返回值: 'fail'  'success'
+
+# 删除订单下面的分支
+
+请求方式:post
+url:http://10.40.153.145:8888/oder/updateBranch
+
+传递参数:orderid,productid
+
+返回类型 :string
+
+返回值: 'fail'  'success'
