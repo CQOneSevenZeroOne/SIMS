@@ -50,3 +50,10 @@ h3{
 	color: white;
     font-weight: 600;
 }
+#err {
+	font-size: 12px;
+	background:none;
+	color: red;
+	text-align: center;
+	display: none;
+}
