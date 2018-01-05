@@ -5,6 +5,5 @@ $(function(){
 	 for(var i in obj1){
 	 	$(".username").html(i)
 	 }
-	 
 	}
 })
