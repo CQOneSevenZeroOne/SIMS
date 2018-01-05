@@ -1,0 +1,18 @@
+$(function(){
+	('#xclick').on('click',function(){
+		$.ajax({
+			url:'http://10.40.153.145:8888/notic/getAllNotic',
+            type:'post',
+            data:{
+            		id:$("#id").text,
+            		userid:$("#userid").text,
+            		time:$("#time").text,
+            		title:$("#title").text,
+            		content:$("#content").text
+                  },
+            success:function(data){
+                console.log(data)
+            } 
+		})
+	})
+})

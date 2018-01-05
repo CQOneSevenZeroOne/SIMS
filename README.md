@@ -204,7 +204,7 @@ url:http://10.40.153.145:8888/customer/del
 
 请求方式:post
 
-url:http://10.40.153.145:8888/oder/addorder
+url:http://10.40.153.145:8888/order/addorder
 
 传递参数:
 
@@ -225,7 +225,7 @@ userid
 # 查询单个订单   （整个订单信息包括分支）
 
 请求方式:post
-url:http://10.40.153.145:8888/oder/findOrderById
+url:http://10.40.153.145:8888/order/findOrderById
 
 传递参数:oderid
 
@@ -247,7 +247,7 @@ url:http://10.40.153.145:8888/oder/findOrderById
 # 查询所有订单    （只返回客户，业务员，订单号，时间，【时间即小分支id，可下一步查询所有小分支】）
 
 请求方式:post
-url:http://10.40.153.145:8888/oder/getAllOrder
+url:http://10.40.153.145:8888/order/getAllOrder
 
 传递参数:无
 
@@ -258,7 +258,7 @@ url:http://10.40.153.145:8888/oder/getAllOrder
 # 查询一个订单的所有分支
 
 请求方式:post
-url:http://10.40.153.145:8888/oder/getAllBeanch
+url:http://10.40.153.145:8888/order/getAllBeanch
 
 传递参数:orderid
 
@@ -269,7 +269,7 @@ url:http://10.40.153.145:8888/oder/getAllBeanch
 # 查询一个订单的所有分支
 
 请求方式:post
-url:http://10.40.153.145:8888/oder/getAllBranch
+url:http://10.40.153.145:8888/order/getAllBranch
 
 传递参数:orderid
 
@@ -280,7 +280,7 @@ url:http://10.40.153.145:8888/oder/getAllBranch
 # 修改订单（即修改订单下面的分支）
 
 请求方式:post
-url:http://10.40.153.145:8888/oder/updateBranch
+url:http://10.40.153.145:8888/order/updateBranch
 
 传递参数:orderid,productid,num
 
@@ -288,13 +288,84 @@ url:http://10.40.153.145:8888/oder/updateBranch
 
 返回值: 'fail'  'success'
 
-# 删除订单下面的分支
+# 删除订单下面的某个分支
 
 请求方式:post
-url:http://10.40.153.145:8888/oder/updateBranch
+url:http://10.40.153.145:8888/order/updateBranch
 
 传递参数:orderid,productid
 
 返回类型 :string
 
 返回值: 'fail'  'success'
+
+
+# 查询所有公告
+
+请求方式:post
+url:http://10.40.153.145:8888/notic/getAllNotic
+
+传递参数:无
+
+返回类型 :string  ||   [{}]
+
+返回值: 'fail'('失败时')    [{}]('成功时')
+
+
+# 查询单个公告
+
+请求方式:post
+url:http://10.40.153.145:8888/notic/getNoticById
+
+传递参数:id
+
+返回类型 :string  ||   {}
+
+返回值: 'fail'('失败时')    {}('成功时')
+
+
+# 查询自己发布的公告
+
+请求方式:post
+url:http://10.40.153.145:8888/notic/getNoticByUserid
+
+传递参数:userid
+
+返回类型 :string  ||   [{}]
+
+返回值: 'fail'('失败时')    [{}]('成功时')
+
+
+# 删除单个公告
+
+请求方式:post
+url:http://10.40.153.145:8888/notic/DeleteNotic
+
+传递参数:id
+
+返回类型 :string  
+
+返回值: 'fail'   'success'
+
+
+# 新增公告
+
+请求方式:post
+url:http://10.40.153.145:8888/notic/addNotic
+
+传递参数:userid,content,title
+
+返回类型 :string  
+
+返回值: 'fail'   'success'
+
+# 修改公告   (只可修改内容和标题)
+
+请求方式:post
+url:http://10.40.153.145:8888/notic/updateNotic
+
+传递参数:id,content,title
+
+返回类型 :string  
+
+返回值: 'fail'   'success'
