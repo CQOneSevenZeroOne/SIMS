@@ -1,2 +1,0 @@
-$("#layerbody").load("orderentry.html");
- 
