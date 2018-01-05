@@ -1,3 +1,21 @@
+<style>
+.search{overflow:hidden;margin:0;padding:0;}
+.fl{ width:40%;float:left;margin-top:40px;}
+.fr{width:20%;float:left;margin-top:-52px;margin-left:35%;}
+</style>
+  <div class="search">
+    <div class="layui-form-item fl" >
+        <label class="layui-form-label">客户查询</label>
+        <div class="layui-input-block">
+            <input type="text" name="txt" id="txt" placeholder="请输入客户编号" autocomplete="off" class="layui-input">
+        </div>
+    </div>
+    <div class="layui-form-item fr">
+        <div class="layui-input-block">
+            <button class="layui-btn" id="btn" lay-submit lay-filter="*">查询</button>
+        </div>
+    </div>
+  </div>
 <table lay-filter="demo">
   <thead>
     <tr >
@@ -12,15 +30,15 @@
     </tr> 
   </thead>
   <tbody id="tbody">
-    <!-- <tr >
-      <td>贤心1</td>
-      <td>66</td>
-      <td>人生就像是一场修行a</td>
-      <td>贤心1</td>
-      <td>66</td>
-      <td>人生就像是一场修行a</td>
-      <td>人生就像是一场修行a</td>
-    </tr> -->
+   <!-- <tr >
+    <td>贤心1</td>
+    <td>66</td>
+    <td>人生就像是一场修行a</td>
+    <td>贤心1</td>
+    <td>66</td>
+    <td>人生就像是一场修行a</td>
+    <td>人生就像是一场修行a</td>
+     </tr>  -->
   </tbody>
 </table>
 <script src="../lib/jquery.js"></script>
