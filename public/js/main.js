@@ -224,8 +224,8 @@ app.post('customer/del', function (req, res) {
 
 
 
-//add oder
-app.post('/oder/addorder', function (req, res) {
+//add order
+app.post('/order/addorder', function (req, res) {
     res.append("Access-Control-Allow-Origin", "*");
     var branchid = Date.now();
     for (var i = 0; i < req.body.branch.length; i++) {
@@ -250,7 +250,7 @@ app.post('/oder/addorder', function (req, res) {
 //get order by id
 app.post('oder/findOrderById', function (req, res) {
     res.append("Access-Control-Allow-Origin", "*");
-    connection.query(`select * from oder where id = ${req.body.orderid}`, function (error, results, fields) {
+    connection.query(`select * from order where id = ${req.body.orderid}`, function (error, results, fields) {
         if (error) {
             res.send('fail');
         } else {
@@ -270,9 +270,9 @@ app.post('oder/findOrderById', function (req, res) {
 })
 
 //get all order
-app.post('oder/getAllOrder', function (req, res) {
+app.post('order/getAllOrder', function (req, res) {
     res.append("Access-Control-Allow-Origin", "*");
-    connection.query(`select * from oder`, function (error, results, fields) {
+    connection.query(`select * from order`, function (error, results, fields) {
         if (error) {
             res.send('fail');
         } else {
@@ -282,9 +282,9 @@ app.post('oder/getAllOrder', function (req, res) {
 })
 
 //get order all branches
-app.post('oder/getAllBranch', function (req, res) {
+app.post('order/getAllBranch', function (req, res) {
     res.append("Access-Control-Allow-Origin", "*");
-    connection.query(`select * from oder where id = ${req.body.orderid}`, function (error, results, fields) {
+    connection.query(`select * from order where id = ${req.body.orderid}`, function (error, results, fields) {
         if (error) {
             res.send('fail');
         } else {
@@ -301,9 +301,9 @@ app.post('oder/getAllBranch', function (req, res) {
 })
 
 //update branch
-app.post('oder/updateBranch', function (req, res) {
+app.post('order/updateBranch', function (req, res) {
     res.append("Access-Control-Allow-Origin", "*");
-    connection.query(`select * from oder where id = ${req.body.orderid}`, function (error, results, fields) {
+    connection.query(`select * from order where id = ${req.body.orderid}`, function (error, results, fields) {
         if (error) {
             res.send('fail');
         } else {
@@ -319,9 +319,9 @@ app.post('oder/updateBranch', function (req, res) {
 })
 
 //del branch
-app.post('oder/updateBranch', function (req, res) {
+app.post('order/updateBranch', function (req, res) {
     res.append("Access-Control-Allow-Origin", "*");
-    connection.query(`select * from oder where id = ${req.body.orderid}`, function (error, results, fields) {
+    connection.query(`select * from order where id = ${req.body.orderid}`, function (error, results, fields) {
         if (error) {
             res.send('fail');
         } else {

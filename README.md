@@ -247,7 +247,7 @@ url:http://10.40.153.145:8888/oder/findOrderById
 # 查询所有订单    （只返回客户，业务员，订单号，时间，【时间即小分支id，可下一步查询所有小分支】）
 
 请求方式:post
-url:http://10.40.153.145:8888/oder/getAllOrder
+url:http://10.40.153.145:8888/order/getAllOrder
 
 传递参数:无
 
