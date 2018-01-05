@@ -1,0 +1,26 @@
+<style>
+    form {
+        width: 500px;
+        position: absolute;
+        left: 50%;
+        top: 200px;
+        margin-left: -250px;
+    }
+</style>
+
+<form class="layui-form">
+    <div class="layui-form-item layui-form-text">
+        <label class="layui-form-label">请填写公告</label>
+        <div class="layui-input-block">
+            <textarea placeholder="请输入内容" class="layui-textarea"></textarea>
+        </div>
+    </div>
+    <div class="layui-form-item">
+        <div class="layui-input-block">
+            <button class="layui-btn" lay-submit lay-filter="*">立即发布</button>
+            <button type="reset" class="layui-btn layui-btn-primary">重置</button>
+        </div>
+    </div>
+</form>
+<script src="../lib/jquery.js"></script>
+<script src="../lib/layui/layui.all.js"></script>
