@@ -5,8 +5,6 @@ $(function(){
         success:function(data){
            console.log(data.length);
            for(var i=0;i<data.length;i++){
-           	str="<p>sdsd</>"
-           $("#userid").html(str);
               $("#userid").append('<option value='+data[i].userId+'>'+data[i].userId+'</option>' )
            }
            renderForm();
