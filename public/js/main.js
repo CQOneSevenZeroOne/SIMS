@@ -27,7 +27,7 @@ app.post('/login', function (req, res) {
         if (req.body.name == results[0].account && req.body.password == results[0].pwd) {
             if (results[0].identify == '业务员') {
                 res.send('salesman');
-            }else if(results[0].identify == 'admin'){
+            } else if (results[0].identify == 'admin') {
                 res.send('admin');
             }
         } else {
@@ -40,9 +40,9 @@ app.post('/login', function (req, res) {
 app.post('/user/findSalesman', function (req, res) {
     res.append("Access-Control-Allow-Origin", "*");
     connection.query(`select * from userinfo where identify = '业务员'`, function (error, results, fields) {
-        if(error){
+        if (error) {
             res.send('fail');
-        }else{
+        } else {
             res.send(results);
         }
     });
@@ -52,9 +52,9 @@ app.post('/user/findSalesman', function (req, res) {
 app.post('/user/findSalesmanById', function (req, res) {
     res.append("Access-Control-Allow-Origin", "*");
     connection.query(`select * from userinfo where userId = ${req.body.userid}`, function (error, results, fields) {
-        if(error){
+        if (error) {
             res.send('fail');
-        }else{
+        } else {
             res.send(results[0]);
         }
     });
@@ -78,9 +78,9 @@ app.post('/user/addInfo', function (req, res) {
     res.append("Access-Control-Allow-Origin", "*");
     console.log(req.body)
     connection.query(`insert into userinfo(account,pwd,identify,tel,email,registerTime) values ('${req.body.accound}','${req.body.password}','${req.body.identify}','${req.body.tel}','${req.body.email}',now())`, function (error, results, fields) {
-        if(error){
+        if (error) {
             res.send('fail');
-        }else{
+        } else {
             res.send('success');
         }
     });
@@ -106,9 +106,9 @@ app.post('/customer/addCustomer', function (req, res) {
     var str = `insert into customer(tel,email,profile,userId,state,cause) values ('${req.body.tel}','${req.body.email}','${req.body.profile}',${req.body.userid},'${req.body.state}','${req.body.cause}')`;
     console.log(str)
     connection.query(str, function (error, results, fields) {
-        if(error){
+        if (error) {
             res.send('fail');
-        }else{
+        } else {
             res.send('success');
         }
     });
@@ -118,9 +118,9 @@ app.post('/customer/addCustomer', function (req, res) {
 app.post('/customer/findAllCustomer', function (req, res) {
     res.append("Access-Control-Allow-Origin", "*");
     connection.query(`select * from customer`, function (error, results, fields) {
-        if(error){
+        if (error) {
             res.send('fail');
-        }else{
+        } else {
             res.send(results);
         }
     });
@@ -130,9 +130,9 @@ app.post('/customer/findAllCustomer', function (req, res) {
 app.post('/customer/findCustomerById', function (req, res) {
     res.append("Access-Control-Allow-Origin", "*");
     connection.query(`select * from customer where customerId = ${req.body.customerid}`, function (error, results, fields) {
-        if(error){
+        if (error) {
             res.send('fail');
-        }else{
+        } else {
             res.send(results[0]);
         }
     });
@@ -141,9 +141,9 @@ app.post('/customer/findCustomerById', function (req, res) {
 app.post('/product/updateProduct', function (req, res) {
     res.append("Access-Control-Allow-Origin", "*");
     connection.query(`update product set name='${req.body.name}' , price = '${req.body.price}',img ='${req.body.img}', notic = '${req.body.notic}' where productId = ${req.body.productid}`, function (error, results, fields) {
-        if(error){
+        if (error) {
             res.send('fail');
-        }else{
+        } else {
             res.send('success');
         }
     });
@@ -153,9 +153,9 @@ app.post('/product/updateProduct', function (req, res) {
 app.post('/product/getAllProduct', function (req, res) {
     res.append("Access-Control-Allow-Origin", "*");
     connection.query(`select * from product`, function (error, results, fields) {
-        if(error){
+        if (error) {
             res.send('fail');
-        }else{
+        } else {
             //console.log(results)
             res.send(results);
         }
@@ -166,9 +166,9 @@ app.post('/product/getAllProduct', function (req, res) {
 app.post('/product/getProductById', function (req, res) {
     res.append("Access-Control-Allow-Origin", "*");
     connection.query(`select * from product where productId = ${req.body.productid}`, function (error, results, fields) {
-        if(error){
+        if (error) {
             res.send('fail');
-        }else{
+        } else {
             res.send(results[0]);
         }
     });
@@ -178,45 +178,45 @@ app.post('/product/getProductById', function (req, res) {
 app.post('/product/addProduct', function (req, res) {
     res.append("Access-Control-Allow-Origin", "*");
     connection.query(`insert into product(name,price,img,notic) values ('${req.body.name}','${req.body.price}','${req.body.img}','${req.body.notic})'`, function (error, results, fields) {
-        if(error){
+        if (error) {
             res.send('fail');
-        }else{
+        } else {
             res.send('success');
         }
     });
 })
 
 //del user
-app.post('user/del',function(req,res){
+app.post('user/del', function (req, res) {
     res.append("Access-Control-Allow-Origin", "*");
     connection.query(`delect from userinfo where userid = ${req.body.userid}`, function (error, results, fields) {
-        if(error){
+        if (error) {
             res.send('fail');
-        }else{
+        } else {
             res.send('success');
         }
     });
 })
 
 //del product
-app.post('product/del',function(req,res){
+app.post('product/del', function (req, res) {
     res.append("Access-Control-Allow-Origin", "*");
     connection.query(`delect from product where productId = ${req.body.productid}`, function (error, results, fields) {
-        if(error){
+        if (error) {
             res.send('fail');
-        }else{
+        } else {
             res.send('success');
         }
     });
 })
 
 //del customer
-app.post('customer/del',function(req,res){
+app.post('customer/del', function (req, res) {
     res.append("Access-Control-Allow-Origin", "*");
     connection.query(`delect from customer where customerId = ${req.body.customerid}`, function (error, results, fields) {
-        if(error){
+        if (error) {
             res.send('fail');
-        }else{
+        } else {
             res.send('success');
         }
     });
@@ -228,41 +228,41 @@ app.post('customer/del',function(req,res){
 app.post('/oder/addorder', function (req, res) {
     res.append("Access-Control-Allow-Origin", "*");
     var branchid = Date.now();
-    for(var i = 0 ; i<req.body.branch.length ; i++){
+    for (var i = 0; i < req.body.branch.length; i++) {
         connection.query(`insert into branch values ('${branchid}',${req.body.branch.productid},${req.body.branch.num},'${req.body.branch.price}')`, function (error, results, fields) {
-            if(error){
+            if (error) {
                 res.send('fail');
-                return ;
+                return;
             }
         });
     }
     connection.query(`insert into order(customerId,userId,branchId) values (,${req.body.customerid},${req.body.userid},'${branchid}')`, function (error, results, fields) {
-        if(error){
+        if (error) {
             res.send('fail');
-            return ;
-        }else{
+            return;
+        } else {
             res.send('success');
         }
     });
-    
+
 })
 
 //get order by id
-app.post('oder/findOrderById',function(req,res){
+app.post('oder/findOrderById', function (req, res) {
     res.append("Access-Control-Allow-Origin", "*");
     connection.query(`select * from oder where id = ${req.body.orderid}`, function (error, results, fields) {
-        if(error){
+        if (error) {
             res.send('fail');
-        }else{
+        } else {
             var order = results[0];
             connection.query(`select * from branch where branchid = '${order.branchid}'`, function (error, results, fields) {
-                if(error){
+                if (error) {
                     res.send('fail');
-                }else{
-                     res.send({
-                         order:order,
-                         branch:results
-                     })
+                } else {
+                    res.send({
+                        order: order,
+                        branch: results
+                    })
                 }
             });
         }
@@ -270,30 +270,30 @@ app.post('oder/findOrderById',function(req,res){
 })
 
 //get all order
-app.post('oder/getAllOrder',function(req,res){
+app.post('oder/getAllOrder', function (req, res) {
     res.append("Access-Control-Allow-Origin", "*");
     connection.query(`select * from oder`, function (error, results, fields) {
-        if(error){
+        if (error) {
             res.send('fail');
-        }else{
+        } else {
             res.send(results)
         }
     });
 })
 
 //get order all branches
-app.post('oder/getAllBranch',function(req,res){
+app.post('oder/getAllBranch', function (req, res) {
     res.append("Access-Control-Allow-Origin", "*");
     connection.query(`select * from oder where id = ${req.body.orderid}`, function (error, results, fields) {
-        if(error){
+        if (error) {
             res.send('fail');
-        }else{
+        } else {
             var order = results[0];
             connection.query(`select * from branch where branchid = '${order.branchid}'`, function (error, results, fields) {
-                if(error){
+                if (error) {
                     res.send('fail');
-                }else{
-                     res.send(results);
+                } else {
+                    res.send(results);
                 }
             });
         }
@@ -301,17 +301,17 @@ app.post('oder/getAllBranch',function(req,res){
 })
 
 //update branch
-app.post('oder/updateBranch',function(req,res){
+app.post('oder/updateBranch', function (req, res) {
     res.append("Access-Control-Allow-Origin", "*");
     connection.query(`select * from oder where id = ${req.body.orderid}`, function (error, results, fields) {
-        if(error){
+        if (error) {
             res.send('fail');
-        }else{
+        } else {
             connection.query(`update branch set num = ${req.body.num} where productId = ${req.body.productid}`, function (error, results, fields) {
-                if(error){
+                if (error) {
                     res.send('fail');
-                }else{
-                     res.send('success');
+                } else {
+                    res.send('success');
                 }
             });
         }
@@ -319,19 +319,92 @@ app.post('oder/updateBranch',function(req,res){
 })
 
 //del branch
-app.post('oder/updateBranch',function(req,res){
+app.post('oder/updateBranch', function (req, res) {
     res.append("Access-Control-Allow-Origin", "*");
     connection.query(`select * from oder where id = ${req.body.orderid}`, function (error, results, fields) {
-        if(error){
+        if (error) {
             res.send('fail');
-        }else{
+        } else {
             connection.query(`delete from branch where productId = ${req.body.productid}`, function (error, results, fields) {
-                if(error){
+                if (error) {
                     res.send('fail');
-                }else{
-                     res.send('success');
+                } else {
+                    res.send('success');
                 }
             });
+        }
+    });
+})
+
+//get all notices
+app.post('notic/getAllNotic', function (req, res) {
+    res.append("Access-Control-Allow-Origin", "*");
+    connection.query(`select * from notic`, function (error, results, fields) {
+        if (error) {
+            res.send('fail');
+        } else {
+            res.send(results)
+        }
+    });
+})
+
+//get notic by id
+app.post('notic/getNoticById', function (req, res) {
+    res.append("Access-Control-Allow-Origin", "*");
+    connection.query(`select * from notic where id = ${req.body.id}`, function (error, results, fields) {
+        if (error) {
+            res.send('fail');
+        } else {
+            res.send(results[0])
+        }
+    });
+})
+
+//get notic by userid
+app.post('notic/getNoticByUserid', function (req, res) {
+    res.append("Access-Control-Allow-Origin", "*");
+    connection.query(`select * from notic where userid = ${req.body.userid}`, function (error, results, fields) {
+        if (error) {
+            res.send('fail');
+        } else {
+            res.send(results)
+        }
+    });
+})
+
+//del notic by id
+app.post('notic/getNoticById', function (req, res) {
+    res.append("Access-Control-Allow-Origin", "*");
+    connection.query(`delete from notic where id = ${req.body.id}`, function (error, results, fields) {
+        if (error) {
+            res.send('fail');
+        } else {
+            res.send('success')
+        }
+    });
+})
+
+
+//add notic
+app.post('notic/addNotic', function (req, res) {
+    res.append("Access-Control-Allow-Origin", "*");
+    connection.query(`insert into notic(userid,content,time,title) values(${req.body.userid},'${req.body.content}',now(),'${req.body.title}')`, function (error, results, fields) {
+        if (error) {
+            res.send('fail');
+        } else {
+            res.send('success')
+        }
+    });
+})
+
+//update notic
+app.post('notic/updateNotic', function (req, res) {
+    res.append("Access-Control-Allow-Origin", "*");
+    connection.query(`update notic set content = '${req.body.content}' , title = '${req.body.title}' , time = now() where id = ${req.body.id}`, function (error, results, fields) {
+        if (error) {
+            res.send('fail');
+        } else {
+            res.send('success')
         }
     });
 })
