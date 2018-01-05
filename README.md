@@ -204,7 +204,7 @@ url:http://10.40.153.145:8888/customer/del
 
 请求方式:post
 
-url:http://10.40.153.145:8888/oder/addorder
+url:http://10.40.153.145:8888/order/addorder
 
 传递参数:
 
@@ -225,7 +225,7 @@ userid
 # 查询单个订单   （整个订单信息包括分支）
 
 请求方式:post
-url:http://10.40.153.145:8888/oder/findOrderById
+url:http://10.40.153.145:8888/order/findOrderById
 
 传递参数:oderid
 
@@ -258,7 +258,7 @@ url:http://10.40.153.145:8888/order/getAllOrder
 # 查询一个订单的所有分支
 
 请求方式:post
-url:http://10.40.153.145:8888/oder/getAllBeanch
+url:http://10.40.153.145:8888/order/getAllBeanch
 
 传递参数:orderid
 
@@ -269,7 +269,7 @@ url:http://10.40.153.145:8888/oder/getAllBeanch
 # 查询一个订单的所有分支
 
 请求方式:post
-url:http://10.40.153.145:8888/oder/getAllBranch
+url:http://10.40.153.145:8888/order/getAllBranch
 
 传递参数:orderid
 
@@ -280,7 +280,7 @@ url:http://10.40.153.145:8888/oder/getAllBranch
 # 修改订单（即修改订单下面的分支）
 
 请求方式:post
-url:http://10.40.153.145:8888/oder/updateBranch
+url:http://10.40.153.145:8888/order/updateBranch
 
 传递参数:orderid,productid,num
 
@@ -291,7 +291,7 @@ url:http://10.40.153.145:8888/oder/updateBranch
 # 删除订单下面的某个分支
 
 请求方式:post
-url:http://10.40.153.145:8888/oder/updateBranch
+url:http://10.40.153.145:8888/order/updateBranch
 
 传递参数:orderid,productid
 
