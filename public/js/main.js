@@ -23,8 +23,8 @@ connection.connect();
 //接收登录请求
 app.post('/login', function (req, res) {
     res.append("Access-Control-Allow-Origin", "*");
-    connection.query('SELECT * FROM userinfo', function (error, results, fields) {
-        if (req.body.name == results[0].account && req.body.password == results[0].pwd) {
+    connection.query(`SELECT * FROM userinfo where account = '${req.body.name}'`, function (error, results, fields) {
+        if (req.body.password == results[0].pwd) {
             if (results[0].identify == '业务员') {
                 res.send('salesman');
             } else if (results[0].identify == 'admin') {
@@ -189,7 +189,7 @@ app.post('/product/addProduct', function (req, res) {
 //del user
 app.post('/user/del', function (req, res) {
     res.append("Access-Control-Allow-Origin", "*");
-    connection.query(`delect from userinfo where userid = ${req.body.userid}`, function (error, results, fields) {
+    connection.query(`delete from userinfo where userid = ${req.body.userid}`, function (error, results, fields) {
         if (error) {
             res.send('fail');
         } else {
@@ -201,7 +201,7 @@ app.post('/user/del', function (req, res) {
 //del product
 app.post('/product/del', function (req, res) {
     res.append("Access-Control-Allow-Origin", "*");
-    connection.query(`delect from product where productId = ${req.body.productid}`, function (error, results, fields) {
+    connection.query(`delete from product where productId = ${req.body.productid}`, function (error, results, fields) {
         if (error) {
             res.send('fail');
         } else {
@@ -213,7 +213,7 @@ app.post('/product/del', function (req, res) {
 //del customer
 app.post('/customer/del', function (req, res) {
     res.append("Access-Control-Allow-Origin", "*");
-    connection.query(`delect from customer where customerId = ${req.body.customerid}`, function (error, results, fields) {
+    connection.query(`delete from customer where customerId = ${req.body.customerid}`, function (error, results, fields) {
         if (error) {
             res.send('fail');
         } else {
@@ -277,7 +277,12 @@ app.post('/order/getAllOrder', function (req, res) {
             console.log(error)
             res.send('fail');
         } else {
-            res.send(results);
+            res.send({
+                code:0,
+                msg:"",
+                count:1000,
+                data:results
+            });
         }
     });
 })
@@ -410,5 +415,64 @@ app.post('/notic/updateNotic', function (req, res) {
     });
 })
 
+//add dayoff
+app.post('/dayoff/addDayoff', function (req, res) {
+    res.append("Access-Control-Allow-Origin", "*");
+    connection.query(`insert into dayoff(salesmanid,currTime,startTime,endTime,type,cause) values(${req.body.salesmanid},'${req.body.currtime}','${req.body.starttime}','${req.body.endtime}','${req.body.type}','${req.body.cause}','未批阅')`, function (error, results, fields) {
+        if (error) {
+            res.send('fail');
+        } else {
+            res.send('success')
+        }
+    });
+})
+
+//get All dayoff
+app.post('/dayoff/getAllDayoff', function (req, res) {
+    res.append("Access-Control-Allow-Origin", "*");
+    connection.query(`select * from dayoff`, function (error, results, fields) {
+        if (error) {
+            res.send('fail');
+        } else {
+            res.send(results);
+        }
+    });
+})
+
+//get not pass dayoff
+app.post('/dayoff/getNotPassDayoff', function (req, res) {
+    res.append("Access-Control-Allow-Origin", "*");
+    connection.query(`select * from dayoff where throught = '未批阅'`, function (error, results, fields) {
+        if (error) {
+            res.send('fail');
+        } else {
+            res.send(results);
+        }
+    });
+})
+
+//get pass dayoff
+app.post('/dayoff/getPassDayoff', function (req, res) {
+    res.append("Access-Control-Allow-Origin", "*");
+    connection.query(`select * from dayoff where throught = '已批阅'`, function (error, results, fields) {
+        if (error) {
+            res.send('fail');
+        } else {
+            res.send(results);
+        }
+    });
+})
+
+//get old dayoff
+app.post('/dayoff/getOldDayoff', function (req, res) {
+    res.append("Access-Control-Allow-Origin", "*");
+    connection.query(`select * from dayoff where salesmanid = ${req.body.userid}`, function (error, results, fields) {
+        if (error) {
+            res.send('fail');
+        } else {
+            res.send(results);
+        }
+    });
+})
 app.listen(8888);
 console.log('start server')
