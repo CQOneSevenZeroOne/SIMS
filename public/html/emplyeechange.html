@@ -1,0 +1,61 @@
+<table id="demo" lay-filter="test"></table>
+<script src="../lib/layui/layui.all.js"></script>
+<script src="../lib/jquery.js"></script>
+<script>
+    layui.use('table', function() {
+        var table = layui.table;
+
+        table.render({
+            elem: '#demo',
+            height: 500,
+            url: 'http://10.40.153.145:8888/user/findSalesman', //数据接口
+            method: "post",
+            done: function(res, curr, count) {
+                //如果是异步请求数据方式，res即为你接口返回的信息。
+                //如果是直接赋值的方式，res即为：{data: [], count: 99} data为当前页数据、count为数据总长度
+                console.log(res);
+            },
+            cols: [
+                [ //表头
+                    {
+                        field: 'userId',
+                        title: 'ID',
+                        width: 200,
+                        sort: true,
+                        fixed: 'left'
+                    },
+                    // {
+                    //     field: 'username',
+                    //     title: '姓名',
+                    //     width: 200
+                    // },
+                    {
+                        field: 'account',
+                        title: '账号',
+                        width: 200,
+                        sort: true
+                    }, {
+                        field: 'pwd',
+                        title: '密码',
+                        width: 200
+                    }, {
+                        field: 'identify',
+                        title: '身份',
+                        width: 200
+                    }, {
+                        field: 'tel',
+                        title: '手机',
+                        width: 200,
+                        sort: true
+                    }, {
+                        field: 'email',
+                        title: '邮箱',
+                        width: 200,
+                        sort: true
+                    }
+                ]
+            ]
+        });
+
+    });
+</script>
