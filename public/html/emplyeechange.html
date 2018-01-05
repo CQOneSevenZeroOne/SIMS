@@ -2,9 +2,23 @@
 <script src="../lib/layui/layui.all.js"></script>
 <script src="../lib/jquery.js"></script>
 <script>
+    $.ajax({
+        url: " http: //10.40.153.145:8888/user/findSalesman",
+        type: "post",
+        success: function(res) {
+            console.log(res);
+            $.each(res, function(i, e) {
+                str += `<td>${res[i].userId}<td>
+                            <td>${res[i].account}<td>
+                            <td>${res[i].pwd}<td>
+                            <td>${res[i].tel}<td>
+                            <td>${res[i].email}<td>`
+            })
+        }
+    })
     layui.use('table', function() {
         var table = layui.table;
-
+        var str = "";
         table.render({
             elem: '#demo',
             height: 500,
@@ -13,7 +27,14 @@
             done: function(res, curr, count) {
                 //如果是异步请求数据方式，res即为你接口返回的信息。
                 //如果是直接赋值的方式，res即为：{data: [], count: 99} data为当前页数据、count为数据总长度
-                console.log(res);
+                $.each(res, function(i, e) {
+                    str += `<td>${res[i].userId}<td>
+                            <td>${res[i].account}<td>
+                            <td>${res[i].pwd}<td>
+                            <td>${res[i].tel}<td>
+                            <td>${res[i].email}<td>`
+                    console.log(i)
+                })
             },
             cols: [
                 [ //表头
