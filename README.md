@@ -288,7 +288,7 @@ url:http://10.40.153.145:8888/oder/updateBranch
 
 返回值: 'fail'  'success'
 
-# 删除订单下面的分支
+# 删除订单下面的某个分支
 
 请求方式:post
 url:http://10.40.153.145:8888/oder/updateBranch
@@ -298,3 +298,74 @@ url:http://10.40.153.145:8888/oder/updateBranch
 返回类型 :string
 
 返回值: 'fail'  'success'
+
+
+# 查询所有公告
+
+请求方式:post
+url:http://10.40.153.145:8888/notic/getAllNotic
+
+传递参数:无
+
+返回类型 :string  ||   [{}]
+
+返回值: 'fail'('失败时')    [{}]('成功时')
+
+
+# 查询单个公告
+
+请求方式:post
+url:http://10.40.153.145:8888/notic/getNoticById
+
+传递参数:id
+
+返回类型 :string  ||   {}
+
+返回值: 'fail'('失败时')    {}('成功时')
+
+
+# 查询自己发布的公告
+
+请求方式:post
+url:http://10.40.153.145:8888/notic/getNoticByUserid
+
+传递参数:userid
+
+返回类型 :string  ||   [{}]
+
+返回值: 'fail'('失败时')    [{}]('成功时')
+
+
+# 删除单个公告
+
+请求方式:post
+url:http://10.40.153.145:8888/notic/DeleteNotic
+
+传递参数:id
+
+返回类型 :string  
+
+返回值: 'fail'   'success'
+
+
+# 新增公告
+
+请求方式:post
+url:http://10.40.153.145:8888/notic/addNotic
+
+传递参数:userid,content,title
+
+返回类型 :string  
+
+返回值: 'fail'   'success'
+
+# 修改公告   (只可修改内容和标题)
+
+请求方式:post
+url:http://10.40.153.145:8888/notic/updateNotic
+
+传递参数:id,content,title
+
+返回类型 :string  
+
+返回值: 'fail'   'success'
