@@ -187,7 +187,7 @@ app.post('/product/addProduct', function (req, res) {
 })
 
 //del user
-app.post('user/del', function (req, res) {
+app.post('/user/del', function (req, res) {
     res.append("Access-Control-Allow-Origin", "*");
     connection.query(`delect from userinfo where userid = ${req.body.userid}`, function (error, results, fields) {
         if (error) {
@@ -199,7 +199,7 @@ app.post('user/del', function (req, res) {
 })
 
 //del product
-app.post('product/del', function (req, res) {
+app.post('/product/del', function (req, res) {
     res.append("Access-Control-Allow-Origin", "*");
     connection.query(`delect from product where productId = ${req.body.productid}`, function (error, results, fields) {
         if (error) {
@@ -211,7 +211,7 @@ app.post('product/del', function (req, res) {
 })
 
 //del customer
-app.post('customer/del', function (req, res) {
+app.post('/customer/del', function (req, res) {
     res.append("Access-Control-Allow-Origin", "*");
     connection.query(`delect from customer where customerId = ${req.body.customerid}`, function (error, results, fields) {
         if (error) {
@@ -225,7 +225,7 @@ app.post('customer/del', function (req, res) {
 
 
 //add order
-app.post('/order/addorder', function (req, res) {
+app.post('/oder/addorder', function (req, res) {
     res.append("Access-Control-Allow-Origin", "*");
     var branchid = Date.now();
     for (var i = 0; i < req.body.branch.length; i++) {
@@ -236,7 +236,7 @@ app.post('/order/addorder', function (req, res) {
             }
         });
     }
-    connection.query(`insert into order(customerId,userId,branchId) values (,${req.body.customerid},${req.body.userid},'${branchid}')`, function (error, results, fields) {
+    connection.query(`insert into oder(customerId,userId,branchId) values (,${req.body.customerid},${req.body.userid},'${branchid}')`, function (error, results, fields) {
         if (error) {
             res.send('fail');
             return;
@@ -248,9 +248,9 @@ app.post('/order/addorder', function (req, res) {
 })
 
 //get order by id
-app.post('oder/findOrderById', function (req, res) {
+app.post('/order/findOrderById', function (req, res) {
     res.append("Access-Control-Allow-Origin", "*");
-    connection.query(`select * from order where id = ${req.body.orderid}`, function (error, results, fields) {
+    connection.query(`select * from oder where id = ${req.body.orderid}`, function (error, results, fields) {
         if (error) {
             res.send('fail');
         } else {
@@ -270,21 +270,22 @@ app.post('oder/findOrderById', function (req, res) {
 })
 
 //get all order
-app.post('order/getAllOrder', function (req, res) {
+app.post('/order/getAllOrder', function (req, res) {
     res.append("Access-Control-Allow-Origin", "*");
-    connection.query(`select * from order`, function (error, results, fields) {
+    connection.query('select * from oder', function (error, results, fields) {
         if (error) {
+            console.log(error)
             res.send('fail');
         } else {
-            res.send(results)
+            res.send(results);
         }
     });
 })
 
 //get order all branches
-app.post('order/getAllBranch', function (req, res) {
+app.post('/order/getAllBranch', function (req, res) {
     res.append("Access-Control-Allow-Origin", "*");
-    connection.query(`select * from order where id = ${req.body.orderid}`, function (error, results, fields) {
+    connection.query(`select * from oder where id = ${req.body.orderid}`, function (error, results, fields) {
         if (error) {
             res.send('fail');
         } else {
@@ -301,9 +302,9 @@ app.post('order/getAllBranch', function (req, res) {
 })
 
 //update branch
-app.post('order/updateBranch', function (req, res) {
+app.post('/order/updateBranch', function (req, res) {
     res.append("Access-Control-Allow-Origin", "*");
-    connection.query(`select * from order where id = ${req.body.orderid}`, function (error, results, fields) {
+    connection.query(`select * from oder where id = ${req.body.orderid}`, function (error, results, fields) {
         if (error) {
             res.send('fail');
         } else {
@@ -319,9 +320,9 @@ app.post('order/updateBranch', function (req, res) {
 })
 
 //del branch
-app.post('order/updateBranch', function (req, res) {
+app.post('/order/updateBranch', function (req, res) {
     res.append("Access-Control-Allow-Origin", "*");
-    connection.query(`select * from order where id = ${req.body.orderid}`, function (error, results, fields) {
+    connection.query(`select * from oder where id = ${req.body.orderid}`, function (error, results, fields) {
         if (error) {
             res.send('fail');
         } else {
@@ -337,7 +338,7 @@ app.post('order/updateBranch', function (req, res) {
 })
 
 //get all notices
-app.post('notic/getAllNotic', function (req, res) {
+app.post('/notic/getAllNotic', function (req, res) {
     res.append("Access-Control-Allow-Origin", "*");
     connection.query(`select * from notic`, function (error, results, fields) {
         if (error) {
@@ -349,7 +350,7 @@ app.post('notic/getAllNotic', function (req, res) {
 })
 
 //get notic by id
-app.post('notic/getNoticById', function (req, res) {
+app.post('/notic/getNoticById', function (req, res) {
     res.append("Access-Control-Allow-Origin", "*");
     connection.query(`select * from notic where id = ${req.body.id}`, function (error, results, fields) {
         if (error) {
@@ -361,7 +362,7 @@ app.post('notic/getNoticById', function (req, res) {
 })
 
 //get notic by userid
-app.post('notic/getNoticByUserid', function (req, res) {
+app.post('/notic/getNoticByUserid', function (req, res) {
     res.append("Access-Control-Allow-Origin", "*");
     connection.query(`select * from notic where userid = ${req.body.userid}`, function (error, results, fields) {
         if (error) {
@@ -373,7 +374,7 @@ app.post('notic/getNoticByUserid', function (req, res) {
 })
 
 //del notic by id
-app.post('notic/getNoticById', function (req, res) {
+app.post('/notic/getNoticById', function (req, res) {
     res.append("Access-Control-Allow-Origin", "*");
     connection.query(`delete from notic where id = ${req.body.id}`, function (error, results, fields) {
         if (error) {
@@ -386,7 +387,7 @@ app.post('notic/getNoticById', function (req, res) {
 
 
 //add notic
-app.post('notic/addNotic', function (req, res) {
+app.post('/notic/addNotic', function (req, res) {
     res.append("Access-Control-Allow-Origin", "*");
     connection.query(`insert into notic(userid,content,time,title) values(${req.body.userid},'${req.body.content}',now(),'${req.body.title}')`, function (error, results, fields) {
         if (error) {
@@ -398,7 +399,7 @@ app.post('notic/addNotic', function (req, res) {
 })
 
 //update notic
-app.post('notic/updateNotic', function (req, res) {
+app.post('/notic/updateNotic', function (req, res) {
     res.append("Access-Control-Allow-Origin", "*");
     connection.query(`update notic set content = '${req.body.content}' , title = '${req.body.title}' , time = now() where id = ${req.body.id}`, function (error, results, fields) {
         if (error) {
