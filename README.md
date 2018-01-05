@@ -369,3 +369,59 @@ url:http://10.40.153.145:8888/notic/updateNotic
 返回类型 :string  
 
 返回值: 'fail'   'success'
+
+# 新增请假申请
+
+请求方式:post
+url:http://10.40.153.145:8888/dayoff/addDayoff
+
+传递参数:salesmanid,currtime,starttime,endtime,type,cause
+
+返回类型 :string  
+
+返回值: 'fail'   'success'
+
+# 查询所有请假申请
+
+请求方式:post
+url:http://10.40.153.145:8888/dayoff/getAllDayoff
+
+传递参数:无
+
+返回类型 :string  || [{}]
+
+返回值: 'fail'   [{}]
+
+# 查询未批阅申请请假申请
+
+请求方式:post
+url:http://10.40.153.145:8888/dayoff/getNotPassDayoff
+
+传递参数:无
+
+返回类型 :string  || [{}]
+
+返回值: 'fail'      [{}]
+
+# 查询已批阅申请请假申请
+
+请求方式:post
+url:http://10.40.153.145:8888/dayoff/getPassDayoff
+
+传递参数:无
+
+返回类型 :string  || [{}]
+
+返回值: 'fail'   [{}]
+
+
+# 查询自己的历史请假申请
+
+请求方式:post
+url:http://10.40.153.145:8888/dayoff/getOldDayoff
+
+传递参数:userid
+
+返回类型 :string  || [{}]
+
+返回值: 'fail'   [{}]
