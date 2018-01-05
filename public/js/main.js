@@ -63,7 +63,7 @@ app.post('/user/findSalesmanById', function (req, res) {
 //admin && salesman  update infomation
 app.post('/user/updateInfo', function (req, res) {
     res.append("Access-Control-Allow-Origin", "*");
-    connection.query(`update userinfo set pwd = ${req.body.password} , tel = ${req.body.tel} , email = ${req.body.email} where userId = ${req.body.userid}`, function (error, results, fields) {
+    connection.query(`update userinfo set pwd = '${req.body.password}' , tel = '${req.body.tel}' , email =' ${req.body.email}' where userId = ${req.body.userid}`, function (error, results, fields) {
         if (error) {
             res.send('fail');
             return;
@@ -76,11 +76,8 @@ app.post('/user/updateInfo', function (req, res) {
 //add userinfo
 app.post('/user/addInfo', function (req, res) {
     res.append("Access-Control-Allow-Origin", "*");
-    var data = new Date();
     console.log(req.body)
-    var str = `insert into userinfo(accound,pwd,identify,tel,email,registerTime) values (${req.body.accound},${req.body.password},${req.body.identify},${req.body.tel},${req.body.email},${data})`;
-    console.log(str)
-    connection.query(str, function (error, results, fields) {
+    connection.query(`insert into userinfo(account,pwd,identify,tel,email,registerTime) values ('${req.body.accound}','${req.body.password}','${req.body.identify}','${req.body.tel}','${req.body.email}',now())`, function (error, results, fields) {
         if(error){
             res.send('fail');
         }else{
@@ -92,7 +89,7 @@ app.post('/user/addInfo', function (req, res) {
 //customer update infomation
 app.post('/customer/updateCustomer', function (req, res) {
     res.append("Access-Control-Allow-Origin", "*");
-    connection.query(`update customer set profile = ${req.body.profile} , tel = ${req.body.tel} , email = ${req.body.email} , state = ${req.body.state} , cause = ${req.body.cause} , userId = ${req.body.userid}  where customerId = ${req.body.customerid}`, function (error, results, fields) {
+    connection.query(`update customer set profile = '${req.body.profile}' , tel = '${req.body.tel}' , email =' ${req.body.email}' , state = '${req.body.state}' , cause = '${req.body.cause}' , userId = ${req.body.userid}  where customerId = ${req.body.customerid}`, function (error, results, fields) {
         if (error) {
             res.send('fail');
             return;
@@ -106,7 +103,9 @@ app.post('/customer/updateCustomer', function (req, res) {
 //add customer
 app.post('/customer/addCustomer', function (req, res) {
     res.append("Access-Control-Allow-Origin", "*");
-    connection.query(`insert into customer(tel,email,profile,userId,state,cause) values (${req.body.tel},${req.body.email},${req.body.profile},${req.body.userid},${req.body.state},${req.body.cause})`, function (error, results, fields) {
+    var str = `insert into customer(tel,email,profile,userId,state,cause) values ('${req.body.tel}','${req.body.email}','${req.body.profile}',${req.body.userid},'${req.body.state}','${req.body.cause}')`;
+    console.log(str)
+    connection.query(str, function (error, results, fields) {
         if(error){
             res.send('fail');
         }else{
@@ -141,7 +140,7 @@ app.post('/customer/findCustomerById', function (req, res) {
 //update product
 app.post('/product/updateProduct', function (req, res) {
     res.append("Access-Control-Allow-Origin", "*");
-    connection.query(`update product set name=${req.body.name} , price = ${req.body.price},img = =${req.body.img}, notic = ${req.body.notic} where productId = ${req.body.productid}`, function (error, results, fields) {
+    connection.query(`update product set name='${req.body.name}' , price = '${req.body.price}',img ='${req.body.img}', notic = '${req.body.notic}' where productId = ${req.body.productid}`, function (error, results, fields) {
         if(error){
             res.send('fail');
         }else{
@@ -178,7 +177,7 @@ app.post('/product/getProductById', function (req, res) {
 //add product
 app.post('/product/addProduct', function (req, res) {
     res.append("Access-Control-Allow-Origin", "*");
-    connection.query(`insert into product(name,price,img,notic) values (${req.body.name},${req.body.price},${req.body.img},${req.body.notic})`, function (error, results, fields) {
+    connection.query(`insert into product(name,price,img,notic) values ('${req.body.name}','${req.body.price}','${req.body.img}','${req.body.notic})'`, function (error, results, fields) {
         if(error){
             res.send('fail');
         }else{
@@ -186,18 +185,156 @@ app.post('/product/addProduct', function (req, res) {
         }
     });
 })
+
+//del user
+app.post('user/del',function(req,res){
+    res.append("Access-Control-Allow-Origin", "*");
+    connection.query(`delect from userinfo where userid = ${req.body.userid}`, function (error, results, fields) {
+        if(error){
+            res.send('fail');
+        }else{
+            res.send('success');
+        }
+    });
+})
+
+//del product
+app.post('product/del',function(req,res){
+    res.append("Access-Control-Allow-Origin", "*");
+    connection.query(`delect from product where productId = ${req.body.productid}`, function (error, results, fields) {
+        if(error){
+            res.send('fail');
+        }else{
+            res.send('success');
+        }
+    });
+})
+
+//del customer
+app.post('customer/del',function(req,res){
+    res.append("Access-Control-Allow-Origin", "*");
+    connection.query(`delect from customer where customerId = ${req.body.customerid}`, function (error, results, fields) {
+        if(error){
+            res.send('fail');
+        }else{
+            res.send('success');
+        }
+    });
+})
+
+
+
 //add oder
-// app.post('/oder/addorder', function (req, res) {
-//     res.append("Access-Control-Allow-Origin", "*");
-//     var date = new Date();
-//     connection.query(`insert into oder values (${date},${req.body.customerid},${req.body.userid},${req.body.productid})`, function (error, results, fields) {
-//         if(error){
-//             res.send('fail');
-//         }else{
-//             res.send('success');
-//         }
-//     });
-// })
+app.post('/oder/addorder', function (req, res) {
+    res.append("Access-Control-Allow-Origin", "*");
+    var branchid = Date.now();
+    for(var i = 0 ; i<req.body.branch.length ; i++){
+        connection.query(`insert into branch values ('${branchid}',${req.body.branch.productid},${req.body.branch.num},'${req.body.branch.price}')`, function (error, results, fields) {
+            if(error){
+                res.send('fail');
+                return ;
+            }
+        });
+    }
+    connection.query(`insert into order(customerId,userId,branchId) values (,${req.body.customerid},${req.body.userid},'${branchid}')`, function (error, results, fields) {
+        if(error){
+            res.send('fail');
+            return ;
+        }else{
+            res.send('success');
+        }
+    });
+    
+})
+
+//get order by id
+app.post('oder/findOrderById',function(req,res){
+    res.append("Access-Control-Allow-Origin", "*");
+    connection.query(`select * from oder where id = ${req.body.orderid}`, function (error, results, fields) {
+        if(error){
+            res.send('fail');
+        }else{
+            var order = results[0];
+            connection.query(`select * from branch where branchid = '${order.branchid}'`, function (error, results, fields) {
+                if(error){
+                    res.send('fail');
+                }else{
+                     res.send({
+                         order:order,
+                         branch:results
+                     })
+                }
+            });
+        }
+    });
+})
+
+//get all order
+app.post('oder/getAllOrder',function(req,res){
+    res.append("Access-Control-Allow-Origin", "*");
+    connection.query(`select * from oder`, function (error, results, fields) {
+        if(error){
+            res.send('fail');
+        }else{
+            res.send(results)
+        }
+    });
+})
+
+//get order all branches
+app.post('oder/getAllBranch',function(req,res){
+    res.append("Access-Control-Allow-Origin", "*");
+    connection.query(`select * from oder where id = ${req.body.orderid}`, function (error, results, fields) {
+        if(error){
+            res.send('fail');
+        }else{
+            var order = results[0];
+            connection.query(`select * from branch where branchid = '${order.branchid}'`, function (error, results, fields) {
+                if(error){
+                    res.send('fail');
+                }else{
+                     res.send(results);
+                }
+            });
+        }
+    });
+})
+
+//update branch
+app.post('oder/updateBranch',function(req,res){
+    res.append("Access-Control-Allow-Origin", "*");
+    connection.query(`select * from oder where id = ${req.body.orderid}`, function (error, results, fields) {
+        if(error){
+            res.send('fail');
+        }else{
+            connection.query(`update branch set num = ${req.body.num} where productId = ${req.body.productid}`, function (error, results, fields) {
+                if(error){
+                    res.send('fail');
+                }else{
+                     res.send('success');
+                }
+            });
+        }
+    });
+})
+
+//del branch
+app.post('oder/updateBranch',function(req,res){
+    res.append("Access-Control-Allow-Origin", "*");
+    connection.query(`select * from oder where id = ${req.body.orderid}`, function (error, results, fields) {
+        if(error){
+            res.send('fail');
+        }else{
+            connection.query(`delete from branch where productId = ${req.body.productid}`, function (error, results, fields) {
+                if(error){
+                    res.send('fail');
+                }else{
+                     res.send('success');
+                }
+            });
+        }
+    });
+})
 
 app.listen(8888);
 console.log('start server')
