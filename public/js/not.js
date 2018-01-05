@@ -1,17 +1,17 @@
 $(function(){
 	('#xclick').on('click',function(){
 		$.ajax({
-			url:'http://10.40.153.98:888/notice',
+			url:'http://10.40.153.145:8888/notic/getAllNotic',
             type:'post',
             data:{
-            		id:id,
-            		userid:userid,
-            		time:time,
-            		title:title,
-            		content:content
+            		id:$("#id").text,
+            		userid:$("#userid").text,
+            		time:$("#time").text,
+            		title:$("#title").text,
+            		content:$("#content").text
                   },
             success:function(data){
-                
+                console.log(data)
             } 
 		})
 	})
