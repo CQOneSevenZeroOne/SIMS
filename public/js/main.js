@@ -11,7 +11,7 @@ app.use(bodyParser.urlencoded({ extended: true }));
 
 // 创建连接
 var connection = mysql.createConnection({
-    host: '10.40.153.98',
+    host: '10.40.153.96',
     user: 'sa1',
     password: '123',
     database: 'crm'
@@ -23,16 +23,22 @@ connection.connect();
 //接收登录请求
 app.post('/login', function (req, res) {
     res.append("Access-Control-Allow-Origin", "*");
-    connection.query(`SELECT * FROM userinfo where account = '${req.body.name}'`, function (error, results, fields) {
-        if (req.body.password == results[0].pwd) {
-            if (results[0].identify == '业务员') {
-                res.send('salesman');
-            } else if (results[0].identify == 'admin') {
-                res.send('admin');
+    var str = `select * from userinfo where account = '${req.body.name}'`;
+    connection.query(str, function (error, results, fields) {
+        if(results!=undefined){
+            if (req.body.password == results[0].pwd) {
+                if (results[0].identify == '业务员') {
+                    res.send('salesman');
+                } else if (results[0].identify == 'admin') {
+                    res.send('admin');
+                }
+            } else {
+                res.send('fail');
             }
-        } else {
+        }else{
             res.send('fail');
         }
+        
     });
 })
 
@@ -52,6 +58,18 @@ app.post('/user/findSalesman', function (req, res) {
 app.post('/user/findSalesmanById', function (req, res) {
     res.append("Access-Control-Allow-Origin", "*");
     connection.query(`select * from userinfo where userId = ${req.body.userid}`, function (error, results, fields) {
+        if (error) {
+            res.send('fail');
+        } else {
+            res.send(results[0]);
+        }
+    });
+})
+
+//get a user by account
+app.post('/user/getUser', function (req, res) {
+    res.append("Access-Control-Allow-Origin", "*");
+    connection.query(`select * from userinfo where account = '${req.body.account}'`, function (error, results, fields) {
         if (error) {
             res.send('fail');
         } else {
@@ -177,7 +195,9 @@ app.post('/product/getProductById', function (req, res) {
 //add product
 app.post('/product/addProduct', function (req, res) {
     res.append("Access-Control-Allow-Origin", "*");
-    connection.query(`insert into product(name,price,img,notic) values ('${req.body.name}','${req.body.price}','${req.body.img}','${req.body.notic})'`, function (error, results, fields) {
+    var str = `insert into product(name,price,img,notic) values ('${req.body.name}','${req.body.price}','${req.body.img}','${req.body.notic}')`;
+    console.log(str)
+    connection.query(str, function (error, results, fields) {
         if (error) {
             res.send('fail');
         } else {
@@ -201,7 +221,9 @@ app.post('/user/del', function (req, res) {
 //del product
 app.post('/product/del', function (req, res) {
     res.append("Access-Control-Allow-Origin", "*");
-    connection.query(`delete from product where productId = ${req.body.productid}`, function (error, results, fields) {
+    var str = `delete from product where productId = ${req.body.productid}`;
+    console.log(str)
+    connection.query(str, function (error, results, fields) {
         if (error) {
             res.send('fail');
         } else {
