@@ -7,7 +7,8 @@
         margin-left: -250px;
     }
 </style>
-<form class="layui-form" method="post">
+
+<form class="layui-form " method="post">
     <div class="layui-form-item layui-form-text">
         <label class="layui-form-label ">客户编号</label>
         <div class="layui-input-block">
@@ -32,11 +33,12 @@
       <textarea name="profile" placeholder="请输入内容" class="layui-textarea" id="profile"></textarea>
     </div>
   </div>
-   <div class="layui-form-item">
+   <div class="layui-form-item layui-form"  lay-filter="selFilter">
     <label class="layui-form-label">负责人编号</label>
     <div class="layui-input-block">
-      <select name="userid"  id="userid">
-        <option value=""></option>
+      <select name="userid" id="userid">
+        <option ></option>
+        <option >1</option>
       </select>
     </div>
   </div>
@@ -60,6 +62,7 @@
         </div>
     </div>
 </form>
+
 <script src="../lib/layui/layui.all.js"></script> 
 <script src="../lib/jquery.js"></script>
 <script src="../js/custormer.js"> </script>
