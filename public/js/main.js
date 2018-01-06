@@ -66,6 +66,18 @@ app.post('/user/findSalesmanById', function (req, res) {
     });
 })
 
+//get a user by account
+app.post('/user/getUser', function (req, res) {
+    res.append("Access-Control-Allow-Origin", "*");
+    connection.query(`select * from userinfo where account = '${req.body.account}'`, function (error, results, fields) {
+        if (error) {
+            res.send('fail');
+        } else {
+            res.send(results[0]);
+        }
+    });
+})
+
 //admin && salesman  update infomation
 app.post('/user/updateInfo', function (req, res) {
     res.append("Access-Control-Allow-Origin", "*");

@@ -57,7 +57,7 @@ url:http://10.40.153.145:8888/user/findSalesmanById
 
 url:http://10.40.153.145:8888/user/updateInfo
 
-传递参数:userid,password,tel,email
+传递参数:account,password,tel,email
 
 返回类型:string
 
