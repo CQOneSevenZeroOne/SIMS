@@ -57,7 +57,20 @@ url:http://10.40.153.145:8888/user/findSalesmanById
 
 url:http://10.40.153.145:8888/user/updateInfo
 
-传递参数:account,password,tel,email
+传递参数:userid,password,tel,email
+
+返回类型:string
+
+返回值:"fail"（修改失败）  "success"（修改成功）
+
+
+# 查询管理员、业务员个人资料    
+
+请求方式:post
+
+url:http://10.40.153.145:8888/user/getUser
+
+传递参数:account
 
 返回类型:string
 
