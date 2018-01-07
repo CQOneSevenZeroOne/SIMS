@@ -254,7 +254,7 @@ url:http://10.40.153.145:8888/order/findOrderById
         
         order:{} , //客户customerId  业务员userId
 
-        brach:[{}]    //产品productId，数量num，价格price
+        branch:[{}]    //产品productId，数量num，价格price
     }
 
 # 查询所有订单    （只返回客户，业务员，订单号，时间，【时间即小分支id，可下一步查询所有小分支】）

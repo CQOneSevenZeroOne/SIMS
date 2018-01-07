@@ -38,7 +38,6 @@
     <div class="layui-form-item">
         <div class="layui-input-block">
             <button class="layui-btn" lay-submit lay-filter="*" id="btn2">提交订单</button>
-            <button type="reset" class="layui-btn layui-btn-primary">重置</button>
         </div>
     </div>
     <!-- 更多表单结构排版请移步文档左侧【页面元素-表单】一项阅览 -->
@@ -163,7 +162,6 @@
         });
     })
     $("#btn2").click(function() {
-        console.log(branch.length == 0)
         if (branch.length == 0 || $("#customerid").val() == "") {
             alert("请输入完整信息")
         } else {
@@ -177,7 +175,7 @@
                 },
                 success: function(data) {
                     alert("提交成功")
-                    location.reload()
+                    $(".layui-body ").load("orderinput.html")
                 }
             })
         }
