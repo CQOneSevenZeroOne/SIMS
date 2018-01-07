@@ -2,18 +2,30 @@ function renderTable(){
    layui.use('table', function(){
    var table = layui.table;
    table.init('demo', {
+<<<<<<< HEAD
    height: 300 ,//ÉèÖÃ¸ß¶È
    limit: 5 ,//×¢Òâ£ºÇëÎñ±ØÈ·±£ limit ²ÎÊý£¨Ä¬ÈÏ£º10£©ÊÇÓëÄã·þÎñ¶ËÏÞ¶¨µÄÊý¾ÝÌõÊýÒ»ÖÂ
    page:true,
    text: {
     none: 'ÔÝÎÞÏà¹ØÊý¾Ý' //Ä¬ÈÏ£ºÎÞÊý¾Ý¡£×¢£º¸ÃÊôÐÔÎª layui 2.2.5 ¿ªÊ¼ÐÂÔö
+=======
+   height: 300 ,
+   limit: 5 ,
+   page:true,
+   text: {
+    none: '暂无相关数据'
+>>>>>>> d1ca6b97584c4fb0166fb947d7eb930f048e6471
     }
    }); 
    tooldmo(table);
   });
  }
+<<<<<<< HEAD
  renderTable()//äÖÈ¾±í¸ñ
  //ÉÌÆ·²éÑ¯
+=======
+ renderTable()
+>>>>>>> d1ca6b97584c4fb0166fb947d7eb930f048e6471
  function productlist(){
    var str="";
  $.ajax({

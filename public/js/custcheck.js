@@ -32,21 +32,54 @@ function renderTable(){
    tooldmo(table);
   });
  }
+ //单条查询客户
+ function inquiry(){
+  var str="";
+  $("#btn1").click(function(){
+    var num = Number($("#searval").val());
+    if(num){
+      $.ajax({
+        url:'http://10.40.153.145:8888/customer/findCustomerById',
+        type:'post',
+        data:{customerid:Number($("#searval").val())},
+        success:function(data){
+          console.log(data.customerId)
+             str =`<tr>
+              <td>${data.customerId}</td>
+              <td>${data.profile}</td>
+              <td>${data.tel}</td>
+              <td>${data.email}</td>
+              <td>${data.userId}</td>
+              <td>${data.state}</td>
+              <td>${data.cause}</td></tr>`;
+            $("#tbody").html(str);
+            renderTable()
+        } 
+  });
+     }
+     else{
+        layer.msg('请正确输入');
+     }
+     
+  })
+ }
+ inquiry();
 function tooldmo(table){
   table.on('tool(demo)', function(obj){ //注：tool是工具条事件名，test是table原始容器的属性 lay-filter="对应的值"
     var data = obj.data //获得当前行数据
     ,layEvent = obj.event; //获得 lay-event 对应的值
     if(layEvent === 'edit'){
+      console.log(data.userid)
       var html = "custormer.html";
-      $(".layui-body").load(html);
-      /*var protocol = window.location.protocol;
-      var hostname = window.location.hostname;
-      var port = window.location.port;
-      var pathname = window.location.pathname;
-      url = protocol+hostname+":"+port+pathname;
-      var href=url+"?"+data.customerId;*/
-      //window.location.href= window.location.href+"?"+data.customerId;
-     
+      $(".layui-body").load(html,function(){
+           $("#custormerid").val(data.customerId),
+           $("#profile").val(data.profile),
+           $("#tel").val(data.tel),
+           $("#email").val(data.email),
+           $("input[type='radio']:checked").val(data.state),
+           $("#cause").val(data.cause),
+           $("#userid").val(data.userid)
+      });
     } else if(layEvent === 'del'){
       layer.confirm('真的删除行么', function(index){
         obj.del(); //删除对应行（tr）的DOM结构
@@ -70,6 +103,13 @@ function tooldmo(table){
     } 
   });
 }
+function renderForm(){
+  layui.use('form', function(){
+   var form = layui.form;
+   form.render();
+  });
+ }
+ renderForm()
           
         
 
