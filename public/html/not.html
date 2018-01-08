@@ -4,18 +4,18 @@
 	</div>
 	<div class="query">
 		<span>公告查询</span>
-		<input type="text"  placeholder="time"/>
 		<input type="text" placeholder="user" id = "user" />
 		<input type="button" value="确定"  id = "btn"/>
 	</div>
 	<div class="bottom">
-		<ul id = 'tbody'>
+		<ul id = 'tbody' class = "tbody">
 			<!--<li>
 				<em>1</em>
 				<span><a href="##" class = "click">福特让他扔掉非官方的股份的非官方梵蒂冈</a></span>
 				<strong>2018-01-04</strong>				
 			</li><hr>-->
-		</ul>			
+		</ul>
+		
 	</div>
 </div>
 <meta charset="utf-8">
@@ -87,6 +87,12 @@
 	.box .bottom strong{
 		font-weight: 400;
 		margin-left: 20px;
+		font-size: 16px;
+	    float: right;
+	}
+	#tbody span:hover a{
+		color:deepskyblue;
+		text-decoration: underline;
 	}
 </style>
 <script src="../js/not.js"></script>
